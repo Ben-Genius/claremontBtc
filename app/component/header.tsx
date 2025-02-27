@@ -43,13 +43,13 @@ const Header = () => {
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.3 }}
-            className=" relative"
+            className="w-12 h-12 md:w-16 md:h-16 relative"
           >
             <Image
               src={logo}
               alt="Bitcoin Club Logo"
-              width={100}
-              className="object-contain animate-spin-slow "
+              fill
+              className="object-contain animate-spin-slow"
               priority
             />
           </motion.div>
@@ -69,18 +69,18 @@ const Header = () => {
           </div>
         </div>
 
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden z-50 p-2"
-        >
-          <motion.div
-            initial={false}
-            animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-gray-600"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.div>
-        </button>
+          </motion.button>
+        </div>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <motion.ul {...fadeIn} className="flex items-center gap-6 lg:gap-10">
             {navItems.map((item, index) => (
@@ -109,22 +109,60 @@ const Header = () => {
           </motion.ul>
         </nav>
 
+        {/* Mobile Menu Dropdown */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden"
+              className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden z-50"
             >
-              <ul className="flex flex-col py-4">
+              <motion.ul
+                className="flex flex-col py-4"
+                initial="closed"
+                animate="open"
+                variants={{
+                  open: {
+                    clipPath: "inset(0% 0% 0% 0% round 10px)",
+                    transition: {
+                      type: "spring",
+                      bounce: 0,
+                      duration: 0.7,
+                      delayChildren: 0.3,
+                      staggerChildren: 0.05,
+                    },
+                  },
+                  closed: {
+                    clipPath: "inset(10% 50% 90% 50% round 10px)",
+                    transition: {
+                      type: "spring",
+                      bounce: 0,
+                      duration: 0.3,
+                    },
+                  },
+                }}
+              >
                 {navItems.map((item, index) => (
                   <motion.li
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="border-b border-gray-100 last:border-none"
+                    variants={{
+                      open: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 24,
+                        },
+                      },
+                      closed: {
+                        opacity: 0,
+                        y: 20,
+                        transition: { duration: 0.2 },
+                      },
+                    }}
+                    className="border-b border-gray-100 last:border-none capitalize"
                   >
                     <Link
                       href={item.href}
@@ -139,7 +177,7 @@ const Header = () => {
                     </Link>
                   </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
           )}
         </AnimatePresence>
