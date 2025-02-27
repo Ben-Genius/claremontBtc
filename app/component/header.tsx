@@ -39,6 +39,20 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center">
+          <motion.div
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className=" relative"
+          >
+            <Image
+              src={logo}
+              alt="Bitcoin Club Logo"
+              width={100}
+              className="object-contain animate-spin-slow "
+              priority
+            />
+          </motion.div>
           <div className="ml-3 md:ml-4">
             <motion.h1
               {...slideDown}
