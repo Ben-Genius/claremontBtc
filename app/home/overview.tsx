@@ -20,18 +20,18 @@ const Overview = () => {
       title: STRINGS.card3Title,
       description: STRINGS.card3Description,
       buttonText: STRINGS.card3buttonText,
-      link: "/resources"
+      link: "/resources",
     },
   ];
 
   return (
-    <div className="relative overflow-hidden py-10">
+    <div className="relative overflow-hidden py-6 sm:py-8 md:py-10">
       {/* Background with glassmorphism effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#e5b6b620] to-[#76151510] z-0"></div>
 
       {/* Decorative elements */}
-      <div className="absolute top-40 right-20 w-64 h-64 bg-[#761515]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-40 left-20 w-72 h-72 bg-[#e5b6b6]/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 right-[5%] w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-[#761515]/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-[5%] w-36 h-36 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-[#e5b6b6]/10 rounded-full blur-3xl"></div>
 
       {/* Content container */}
       <motion.div
@@ -40,8 +40,7 @@ const Overview = () => {
         transition={{ duration: 0.8 }}
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-   
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 mb-12 sm:mb-16 md:mb-20 lg:mb-24">
           {overviewList.map((item, index) => (
             <motion.div
               key={index}
@@ -53,7 +52,7 @@ const Overview = () => {
                 type: "spring",
                 stiffness: 100,
               }}
-              className="backdrop-blur-sm bg-white/5 p-4 rounded-2xl hover:shadow-xl transition-all duration-500"
+              className="backdrop-blur-sm bg-white/5 p-3 sm:p-4 rounded-xl sm:rounded-2xl hover:shadow-xl transition-all duration-500"
             >
               <OverviewCard
                 icon={item.icon}
