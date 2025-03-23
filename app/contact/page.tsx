@@ -5,102 +5,103 @@ import { STRINGS } from "../constant/strings";
 import m1 from "../assets/clare.png";
 import m2 from "../assets/mckena.png";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-  // Main container animation
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
+// Main container animation
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      when: "beforeChildren",
+      staggerChildren: 0.2,
     },
-  };
+  },
+};
 
-  // Header animation - reveal from bottom
-  const headerVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        damping: 12,
-        duration: 0.7,
-      },
+// Header animation - reveal from bottom
+const headerVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      damping: 12,
+      duration: 0.7,
     },
-  };
+  },
+};
 
-  // Text animation - subtle fade in
-  const textVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
+// Text animation - subtle fade in
+const textVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
 
-  // Subheader animation - slide in from left
-  const subheaderVariants = {
-    hidden: { x: -30, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
+// Subheader animation - slide in from left
+const subheaderVariants = {
+  hidden: { x: -30, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
     },
-  };
+  },
+};
 
-  // Email animation
-  const emailVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.5 },
-    },
-    hover: {
-      color: "#761515",
-      scale: 1.02,
-      transition: { duration: 0.2 },
-    },
-  };
+// Email animation
+const emailVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.5 },
+  },
+  hover: {
+    color: "#761515",
+    scale: 1.02,
+    transition: { duration: 0.2 },
+  },
+};
 
-  // Images animation - reveal with mask effect
-  const imageContainerVariants = {
-    hidden: { opacity: 0, scale: 0.98 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        delay: 0.4,
-      },
+// Images animation - reveal with mask effect
+const imageContainerVariants = {
+  hidden: { opacity: 0, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      delay: 0.4,
     },
-    hover: {
-      scale: 1.03,
-      transition: { duration: 0.5 },
-    },
-  };
+  },
+  hover: {
+    scale: 1.03,
+    transition: { duration: 0.5 },
+  },
+};
 
-  // Image caption animation
-  const captionVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, delay: 0.2 },
-    },
-  };
+// Image caption animation
+const captionVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, delay: 0.2 },
+  },
+};
 
-  
 const ContactSection: React.FC = () => {
-
+  const router = useRouter();
   return (
     <motion.div
       className="bg-[#F5E6E6] p-6 md:p-8 max-w-[87rem] mx-auto"
@@ -132,7 +133,12 @@ const ContactSection: React.FC = () => {
 
           <motion.p className="mb-8" variants={textVariants}>
             We encourage (but do not expect or require) interested students to
-            read through the educational content on our Resources page.
+            read through the educational content on our{" "}
+            <Link href="/resources" className="underline">
+              {" "}
+              Resource page
+            </Link>
+            .
           </motion.p>
         </motion.div>
 
@@ -150,9 +156,12 @@ const ContactSection: React.FC = () => {
             whileHover="hover"
           >
             Arman Dashti (CMC'27) –{" "}
-            <motion.span className="hover:underline cursor-pointer">
+            <motion.a
+              className="hover:underline cursor-pointer"
+              onClick={() => router.push("mailto:adashti39@cmc.edu")}
+            >
               adashti39@cmc.edu
-            </motion.span>
+            </motion.a>
           </motion.p>
 
           <motion.h2
@@ -170,13 +179,14 @@ const ContactSection: React.FC = () => {
               className="relative h-52 md:h-64 overflow-hidden rounded-md"
               variants={imageContainerVariants}
               whileHover="hover"
+              onClick={() => router.push("https://www.cmc.edu")}
             >
               <Image
                 src={m1}
                 alt="Claremont Mckenna College"
                 layout="fill"
                 objectFit="cover"
-                className="transition-transform duration-700 ease-in-out"
+                className="transition-transform duration-700 ease-in-out cursor-pointer"
               />
               <motion.div
                 className="absolute bottom-2 left-2 bg-black bg-opacity-50 px-2 py-1 text-white text-sm"
@@ -196,7 +206,8 @@ const ContactSection: React.FC = () => {
                 alt="Claremont Colleges"
                 layout="fill"
                 objectFit="cover"
-                className="transition-transform duration-700 ease-in-out"
+                className="transition-transform duration-700 ease-in-out cursor-pointer"
+                onClick={() => router.push("https://www.claremont.edu")}
               />
               <motion.div
                 className="absolute bottom-2 left-2 bg-black bg-opacity-50 px-2 py-1 text-white text-sm"

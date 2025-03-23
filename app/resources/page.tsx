@@ -109,7 +109,7 @@ const ResourcesSection: React.FC = () => {
 
         <div className="mb-6">
           <motion.p
-            className="text-center italic mb-4"
+            className="text-center italic mb-4 font-bold"
             variants={quoteVariants}
           >
             "An investment in knowledge pays the best interest." – Benjamin
@@ -133,7 +133,7 @@ const ResourcesSection: React.FC = () => {
         </div>
 
         <motion.div variants={imageVariants} whileHover="hover">
-          <Link href="https://drive.google.com/drive/folders/1234567890">
+          <Link href="https://drive.google.com/drive/folders/1y9sLz86ry-N_LR4jNNwJnKFZJP_jP-pf?usp=sharing">
             <motion.div
               initial={{ filter: "brightness(1)" }}
               whileHover={{ filter: "brightness(1.05)" }}
@@ -143,7 +143,7 @@ const ResourcesSection: React.FC = () => {
                 src={drive}
                 alt="Google Drive Logo"
                 width={1000}
-                className="mt-2 object-cover rounded-lg shadow-md"
+                className="mt-2 object-cover rounded-lg shadow-md text-black bg-black"
               />
             </motion.div>
           </Link>

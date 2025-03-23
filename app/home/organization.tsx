@@ -70,6 +70,7 @@ const Organization = () => {
               title={STRINGS.card2Title}
               description={STRINGS.card2Description}
               buttonText={STRINGS.card2buttonText}
+              link="/team"
             />
           </div>
         </motion.div>

@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { STRINGS } from "../constant/strings";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Linkedin } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
+import { IMAGES } from "../assets";
 // Dummy Image URL (Replace later with actual images)
 const dummyImage =
   "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D";
@@ -15,54 +15,71 @@ type Leader = {
   name: string;
   role: string;
   linkedin: string;
-  image: string;
+  image: StaticImageData;
 };
 
 // President Data
-const president: Leader = {
+const president = {
   name: "Arman Dashti",
   role: "President, Founder",
-  linkedin: "https://linkedin.com/in/armandashti",
-  image: dummyImage,
+  linkedin: "https://www.linkedin.com/in/armandashti1/",
 };
 
 // Leadership Committee Members Data
 const leadershipTeam: Leader[] = [
   {
-    name: "Kekeli Bright",
+    name: "Luke Rinaldi ’27 ",
     role: "Chief Executive Officer",
-    linkedin: "https://linkedin.com/in/kekelibright",
-    image: dummyImage,
+    linkedin: "https://www.linkedin.com/in/lukerinaldi/",
+    image: IMAGES.luke,
   },
   {
-    name: "Kekeli Bright",
+    name: "Jessica Gold",
     role: "Chief Executive Officer",
-    linkedin: "https://linkedin.com/in/kekelibright",
-    image: dummyImage,
+    linkedin: "https://www.linkedin.com/in/jessica-gold-043782213/",
+    image: IMAGES.jess,
   },
   {
-    name: "Kekeli Bright",
+    name: "Will Baxter",
     role: "Chief Executive Officer",
-    linkedin: "https://linkedin.com/in/kekelibright",
-    image: dummyImage,
+    linkedin: "https://www.linkedin.com/in/willhbaxter/",
+    image: IMAGES.will,
   },
   {
-    name: "Kekeli Bright",
+    name: "Gabriel Goldstein",
     role: "Chief Executive Officer",
     linkedin: "https://linkedin.com/in/kekelibright",
-    image: dummyImage,
+    image: IMAGES.naa,
   },
   {
-    name: "Kekeli Bright",
+    name: "Emre Kocer",
     role: "Chief Executive Officer",
-    linkedin: "https://linkedin.com/in/kekelibright",
-    image: dummyImage,
+    linkedin: "https://www.linkedin.com/in/gabrielbgoldstein/",
+    image: IMAGES.emre,
   },
   {
-    name: "Kekeli Bright",
+    name: "Averi O",
     role: "Chief Executive Officer",
-    linkedin: "https://linkedin.com/in/kekelibright",
-    image: dummyImage,
+    linkedin: "https://www.linkedin.com/in/averi-o-b46174354/",
+    image: IMAGES.mckena,
+  },
+  {
+    name: "Ali McEachern",
+    role: "Chief Executive Officer",
+    linkedin: "https://www.linkedin.com/in/ali-mceachern-65205b339/",
+    image: IMAGES.ali,
+  },
+  {
+    name: "Michael Grigorian",
+    role: "Chief Executive Officer",
+    linkedin: "https://www.linkedin.com/in/michael-grigorian/",
+    image: IMAGES.michaw,
+  },
+  {
+    name: "Nripesh Agarwal",
+    role: "Chief Executive Officer",
+    linkedin: "https://www.linkedin.com/in/nripeshagarwal/",
+    image: IMAGES.nrips,
   },
 ];
 
@@ -169,38 +186,44 @@ const Team = () => {
       {/* President Card */}
       <motion.div className="mb-12 flex justify-center" variants={itemVariants}>
         <motion.div
-          className="w-80 bg-[#761515] text-white rounded-lg shadow-lg overflow-hidden"
+          className="w-[36rem] bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 relative"
           variants={cardHoverVariants}
           whileHover="hover"
         >
           <motion.div
-            className="w-full h-64 relative"
-            whileHover={{ scale: 1.05 }}
+            className="w-full h-[33rem] relative"
+            whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
             <Image
-              src={president.image}
+              src={IMAGES.founder}
               alt={president.name}
               fill
               className="object-cover"
             />
-          </motion.div>
-          <div className="p-6">
-            <h3 className="text-lg font-medium">{president.name}</h3>
-            <p className="text-sm">{president.role}</p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Link
-                href={president.linkedin}
-                className="text-sm text-blue-700 font-medium flex items-center gap-1 mt-2"
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+              <h2 className="text-3xl font-bold text-white">
+                Arman Dashti '27
+              </h2>
+              <p className="text-xl text-white/90">President Founder</p>
+              <p className="text-white/80 mt-2">
+                Committed to leadership and innovation
+              </p>
+              <motion.div
+                className="mt-4"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
               >
-                <Linkedin size={16} />
-                LinkedIn
-              </Link>
-            </motion.div>
-          </div>
+                <Link
+                  href={president.linkedin}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Linkedin size={18} />
+                  <span>LinkedIn</span>
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
 
@@ -223,6 +246,7 @@ const Team = () => {
       </motion.div>
 
       {/* Leadership Team Grid */}
+      {/* Leadership Team Grid */}
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
         variants={containerVariants}
@@ -230,7 +254,7 @@ const Team = () => {
         {leadershipTeam.map((leader, index) => (
           <motion.div
             key={index}
-            className="bg-[#761515] text-white rounded-lg shadow-lg overflow-hidden"
+            className="bg-[#761515] text-white rounded-lg shadow-lg overflow-hidden relative h-[24rem]"
             variants={itemVariants}
             whileHover={{
               y: -10,
@@ -239,7 +263,7 @@ const Team = () => {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div
-              className="w-full h-[16rem] relative"
+              className="w-full h-full relative"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
@@ -249,23 +273,24 @@ const Team = () => {
                 fill
                 className="object-cover"
               />
-            </motion.div>
-            <div className="p-6">
-              <h3 className="text-lg font-medium">{leader.name}</h3>
-              <p className="text-sm">{leader.role}</p>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Link
-                  href={leader.linkedin}
-                  className="text-sm text-blue-700 font-medium flex items-center gap-1 mt-2"
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white/40 to-white/40">
+                <h3 className="text-2xl font-semibold">{leader.name}</h3>
+                {/* <p className="text-sm text-white">{leader.role}</p> */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                  className="mt-2"
                 >
-                  <Linkedin size={16} />
-                  LinkedIn
-                </Link>
-              </motion.div>
-            </div>
+                  <Link
+                    href={leader.linkedin}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <Linkedin size={16} />
+                    LinkedIn
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         ))}
       </motion.div>

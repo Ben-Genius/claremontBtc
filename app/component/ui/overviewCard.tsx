@@ -2,6 +2,7 @@
 import { LucideIcon } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export interface OverviewCard {
   icon: LucideIcon;
@@ -9,6 +10,7 @@ export interface OverviewCard {
   description: string;
   buttonText: string;
   className?: string;
+  link?: string;
 }
 
 const OverviewCard = ({
@@ -17,6 +19,7 @@ const OverviewCard = ({
   icon: Icon,
   buttonText,
   className = "",
+  link="/"
 }: OverviewCard) => {
   return (
     <motion.div
@@ -51,21 +54,23 @@ const OverviewCard = ({
       >
         {description}
       </p>
-      <motion.button
-        whileHover={{
-          scale: 1.02,
-          boxShadow: "0 10px 25px -5px rgba(118, 21, 21, 0.3)",
-        }}
-        whileTap={{ scale: 0.98 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        className={`${
-          className.includes("!bg-transparent")
-            ? "bg-[#761515] text-white"
-            : "bg-white text-[#761515]"
-        } text-md font-normal tracking-wider mt-10 py-2 px-4 rounded-xl w-full mb-3 shadow-lg`}
-      >
-        {buttonText}
-      </motion.button>
+      <Link href={link} className="w-full">
+        <motion.button
+          whileHover={{
+            scale: 1.02,
+            boxShadow: "0 10px 25px -5px rgba(118, 21, 21, 0.3)",
+          }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          className={`${
+            className.includes("!bg-transparent")
+              ? "bg-[#761515] text-white"
+              : "bg-white text-[#761515]"
+          } text-lg font-normal tracking-wider mt-10 py-2 px-4 rounded-xl w-full mb-3 shadow-lg`}
+        >
+          {buttonText}
+        </motion.button>
+      </Link>
     </motion.div>
   );
 };

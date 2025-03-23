@@ -13,12 +13,14 @@ const Overview = () => {
       title: STRINGS.card1Title,
       description: STRINGS.card1Description,
       buttonText: STRINGS.card1buttonText,
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSfWrewl692Z8L019RFEOhdMB5hK_gv6SkSdpL4kLLxlBPfNpg/viewform",
     },
     {
       icon: GraduationCap,
       title: STRINGS.card3Title,
       description: STRINGS.card3Description,
       buttonText: STRINGS.card3buttonText,
+      link: "/resources"
     },
   ];
 
@@ -59,6 +61,7 @@ const Overview = () => {
                 description={item.description}
                 buttonText={item.buttonText}
                 className="!bg-gradient-to-br !from-[#761515] !to-[#8a2424] !shadow-lg hover:!shadow-xl transition-all duration-300"
+                link={item.link}
               />
             </motion.div>
           ))}
