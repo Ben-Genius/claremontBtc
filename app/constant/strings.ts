@@ -13,7 +13,7 @@ export const STRINGS = {
   card1buttonText: "Interest Form",
   card2Title: "Organization",
   card2Description:
-    "Everyone at CBC has a voice in our discussions, but our initiatives and events are organized by our Leadership Committee. ",
+    "Everyone at CBC has a voice in our discussions, while our Leadership Committee organizes initiatives and events to keep the club active and engaging. Through their efforts, we bring guest speakers, host educational sessions, and foster a strong community of Bitcoin enthusiasts.",
   card2buttonText: "Leadership",
   card3Title: "Education",
   card3Description:
